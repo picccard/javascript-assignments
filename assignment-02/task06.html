@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!-- 10.12.2017 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>assignment-02\task01</title>
+    </head>
+    <body>
+        Age: <input type="text" id="age"><br>
+        Length in km: <input type="text" id="length"><br>
+        <button id="calcPriceBtn">Calculate</button>
+
+        <div id="outputField"></div>
+
+        <script type="text/javascript">
+
+        document.getElementById("calcPriceBtn")
+            .onclick = () => {
+                let age = document.getElementById("age").value
+                let length = document.getElementById("length").value
+                let output = ""
+
+                if (isNaN(age) || isNaN(length)) {
+                    output = "Both age and length must be a number."
+                } else {
+                    let price = 3.52 * length
+                    if (age < 12) {
+                        price *= 0.5
+                    }
+                    if (age >= 67) {
+                        price *= 0.8
+                    }
+                    output = "Your ticket will cost " + price + "."
+                }
+
+                document.getElementById('outputField').innerHTML = output
+            }
+        </script>
+    </body>
+</html>

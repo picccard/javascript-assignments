@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<!-- 10.12.2017 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>assignment-02\task01</title>
+    </head>
+    <body>
+        Type a number: <input type="text" id="number"><br>
+        <button id="btn">Calculate</button>
+
+        <div id="outputField"></div>
+
+        <script type="text/javascript">
+        document.getElementById('btn')
+            .onclick = () => {
+                let outputData = ''
+                var number = document.getElementById('number').value
+                if (isNaN(number)) {
+                    outputData = "You did not input a number."
+                } else {
+                    outputData = "Half is " + number/2 + '</br>' +
+                                 "Double is " + number*2 + '</br>' +
+                                 "Triple is " + number*3 + '</br>' +
+                                 "Squared is " + number**2
+                }
+                document.getElementById('outputField').innerHTML = outputData
+            }
+        </script>
+    </body>
+</html>

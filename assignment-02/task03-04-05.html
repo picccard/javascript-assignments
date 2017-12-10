@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<!-- 10.12.2017 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>assignment-02\task03-04-05</title>
+    </head>
+    <body>
+        Select a result (H/D/A): <input type="text" id="result"><br>
+        <button id="btn">Calculate</button>
+
+        <div id="outputField"></div>
+
+        <script type="text/javascript">
+        document.getElementById('btn')
+            .onclick = () => {
+                let result = document.getElementById('result').value
+
+                switch (result) {
+                    case "h": case "H":
+                        output = "Home";break
+                    case "d": case "D":
+                        output = "Draw";break
+                    case "a": case "A":
+                        output = "Away";break
+                    default:
+                        output = "Type a valid result.";break
+                }
+
+                document.getElementById('outputField').innerHTML = output
+            }
+        </script>
+    </body>
+</html>

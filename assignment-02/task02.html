@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<!-- 10.12.2017 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>assignment-02\task02</title>
+    </head>
+    <body>
+        Age: <input type="text" id="age"><br>
+        <button id="checkAgeBtn">Calculate</button>
+
+        <div id="outputField"></div>
+
+        <script type="text/javascript">
+        document.getElementById("checkAgeBtn")
+            .onclick = () => {
+                let age = document.getElementById("age").value
+                let output = ""
+
+                if (isNaN(age)) {
+                    output = "Age must be a number."
+                } else {
+                    if (age >= 18) {
+                        output = "You are old enough to drive."
+                        if (age >= 67) {
+                            output += " You could also be retired."
+                        }
+                    } else {
+                        output = "You are not old enough to drive."
+                    }
+                }
+                document.getElementById('outputField').innerHTML = output
+            }
+        </script>
+    </body>
+</html>
