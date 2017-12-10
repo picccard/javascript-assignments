@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<!-- 10.12.2017 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>assignment-01\task02</title>
+    </head>
+    <body>
+        Firstname: <input type="text" id="firstName"><br>
+        Middlename: <input type="text" id="middleName"><br>
+        Surname: <input type="text" id="surName"><br>
+
+        <button id="getFullNameBtn">Get Full Name</button>
+
+        <div id="outputData"></div>
+
+        <script type="text/javascript">
+        document.getElementById('getFullNameBtn').onclick = () => {
+            let outputData = document.getElementById('outputData')
+            let firstName = document.getElementById('firstName')
+            let middleName = document.getElementById('middleName')
+            let surName = document.getElementById('surName')
+
+            outputData.innerHTML =
+                (firstName.value + " " + middleName.value + " " + surName.value)
+        }
+
+        </script>
+    </body>
+</html>
