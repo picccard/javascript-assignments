@@ -15,22 +15,22 @@
         let numbers = [];
 
         function fill() {
-          for (let i = 0; i < 20; i++) {
-            let num = Math.floor(Math.random() * 11);
-            numbers[i] = num;
-          }
+            for (let i = 0; i < 20; i++) {
+                let num = Math.floor(Math.random() * 11)
+                numbers[i] = num
+            }
         }
 
         function print() {
-          let response = "";
-          for (let i = 0; i < 20;i++) {
-            response += numbers[i] + "<br>";
-          }
-          document.getElementById("output1").innerHTML = response;
+            let response = ''
+            for (let i = 0; i < 20;i++) {
+                response += numbers[i] + "<br>"
+            }
+            document.getElementById("output1").innerHTML = response
         }
 
         function printLast(array) {
-            document.getElementById("output2").innerHTML = 'Last item: ' + array[array.length - 1];
+            document.getElementById("output2").innerHTML = 'Last item: ' + array[array.length - 1]
         }
 
         </script>

@@ -7,21 +7,20 @@
     </head>
     <body onLoad="primeNum()">
 
-      <script>
-      function primeNum() {
-        var value = parseInt(prompt("Type a number"));
+        <script>
 
-        response = "primenumber";
-        for (let i = 2; i < value; i++) {
-            if (value % i === 0) {
-                response = "Not primenumber";
-                break;
+        function primeNum() {
+            let value = parseInt(prompt("Type a number"));
+            let response = "primenumber";
+            for (let i = 2; i < value; i++) {
+                if (value % i === 0) {
+                    response = "Not primenumber";
+                    break;
+                }
             }
+            alert(response);
         }
 
-       alert(response);
-    }
       </script>
-
     </body>
 </html>

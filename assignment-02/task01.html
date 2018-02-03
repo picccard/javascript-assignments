@@ -12,10 +12,11 @@
         <div id="outputField"></div>
 
         <script type="text/javascript">
+
         document.getElementById('btn')
             .onclick = () => {
                 let outputData = ''
-                var number = document.getElementById('number').value
+                let number = document.getElementById('number').value
                 if (isNaN(number)) {
                     outputData = "You did not input a number."
                 } else {
@@ -26,6 +27,7 @@
                 }
                 document.getElementById('outputField').innerHTML = outputData
             }
+
         </script>
     </body>
 </html>

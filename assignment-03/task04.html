@@ -12,23 +12,19 @@
         <script type="text/javascript">
 
         function makeTable() {
+            let prod = ''
+            let myTable = "<table style='width:500px'>"
 
-           let number1, number2, prod;
-
-           let myTable = "<table style='width:500px'>";
-
-           for (number1 = 10; number1 <= 19; number1++) {
-             myTable += "<tr>";
-             for (number2 = 10; number2 <= 19; number2++) {
-                prod = number1 * number2;
-                myTable += "<td>" + prod + "</td>";
-             }
-             myTable += "</tr>";
-           }
-           myTable += "</table>";
-
-           document.getElementById("output").innerHTML = myTable;
-
+            for (let number1 = 10; number1 <= 19; number1++) {
+                myTable += "<tr>"
+                for (let number2 = 10; number2 <= 19; number2++) {
+                    prod = number1 * number2
+                    myTable += "<td>" + prod + "</td>"
+                }
+            myTable += "</tr>";
+            }
+            myTable += "</table>";
+            document.getElementById("output").innerHTML = myTable;
         }
 
         </script>

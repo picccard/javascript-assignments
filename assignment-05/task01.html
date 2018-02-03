@@ -1,64 +1,65 @@
 <html>
 <!-- 02.02.2018 -->
-<body>
-  <h1>Find the hidden button and click it!</h1>
-  <p><b>How many buttons can you click in 15 seconds?</b></p>
-  <div>Seconds remaining: </div><div id="timeText"></div>
-  <div>Points: </div><div id="pointsText"></div>
-  <button id="theButton">The button</button>
-</body>
-<script>
-let timeText = document.getElementById('timeText');
-let time = 15;
-timeText.textContent = time;
+    <body>
+        <h1>Find the hidden button and click it!</h1>
+        <p><b>How many buttons can you click in 15 seconds?</b></p>
+        <div>Seconds remaining: </div><div id="timeText"></div>
+        <div>Points: </div><div id="pointsText"></div>
+        <button id="theButton">The button</button>
+    </body>
+        <script>
+        let timeText = document.getElementById('timeText');
+        let time = 15;
+        timeText.textContent = time;
 
-let points = 0;
-let pointsText = document.getElementById('pointsText');
-pointsText.textContent = points;
+        let points = 0;
+        let pointsText = document.getElementById('pointsText');
+        pointsText.textContent = points;
 
-let theButton = document.getElementById('theButton');
-theButton.style.position = 'absolute';
+        let theButton = document.getElementById('theButton');
+        theButton.style.position = 'absolute';
 
-function hideAndMoveButton() {
-  // Hide theButton
-  theButton.style.visibility = 'hidden';
-  // Move theButton to a random position
-  theButton.style.left = Math.random() * 500 + 'px';
-  theButton.style.top = Math.random() * 500 + 'px';
-}
+        function hideAndMoveButton() {
+            // Hide theButton
+            theButton.style.visibility = 'hidden';
+            // Move theButton to a random position
+            theButton.style.left = Math.random() * 500 + 'px';
+            theButton.style.top = Math.random() * 500 + 'px';
+        }
 
-hideAndMoveButton();
+        hideAndMoveButton();
 
-// Show theButton when the mouse cursor is close to it
-window.onmousemove = function(event) {
-  let rect = theButton.getBoundingClientRect();
-  let centerX = (rect.right + rect.left) / 2;
-  let centerY = (rect.bottom + rect.top) / 2;
+        // Show theButton when the mouse cursor is close to it
+        window.onmousemove = function(event) {
+            let rect = theButton.getBoundingClientRect();
+            let centerX = (rect.right + rect.left) / 2;
+            let centerY = (rect.bottom + rect.top) / 2;
 
-  // Calculate distance between mouse cursor and center of theButton
-  let distance = Math.sqrt(Math.pow(centerX - event.clientX, 2) + Math.pow(centerY - event.clientY, 2));
+            // Calculate distance between mouse cursor and center of theButton
+            let distance = Math.sqrt(Math.pow(centerX - event.clientX, 2) + Math.pow(centerY - event.clientY, 2));
 
-  if(distance < 100 && theButton.style.visibility == 'hidden') {
-    theButton.style.visibility = 'visible';
-  }
-}
+            if(distance < 100 && theButton.style.visibility == 'hidden') {
+                theButton.style.visibility = 'visible';
+            }
+        }
 
-theButton.onclick = function() {
-  points++;
-  hideAndMoveButton();
-  pointsText.textContent = points;
-}
+        theButton.onclick = function() {
+            points++;
+            hideAndMoveButton();
+            pointsText.textContent = points;
+        }
 
-setInterval(function() {
-  time--;
-  if(time == 0) {
-    alert('You found and clicked on ' + points + ' buttons! Restarting game...')
-    points = 0;
-    hideAndMoveButton();
-    pointsText.textContent = points;
-    time = 15;
-  }
-  timeText.textContent = time;
-}, 1000);
-</script>
+        setInterval(function() {
+            time--;
+            if(time == 0) {
+                alert('You found and clicked on ' + points + ' buttons! Restarting game...')
+                points = 0;
+                hideAndMoveButton();
+                pointsText.textContent = points;
+                time = 15;
+            }
+            timeText.textContent = time;
+        }, 1000);
+        </script>
+    </body>
 </html>

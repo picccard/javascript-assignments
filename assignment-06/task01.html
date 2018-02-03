@@ -1,104 +1,106 @@
 <html>
-<body>
-  <div>
-    <button id="clearButton">Clear</button>
-    Color: <select id="colorSelection">
-      <option>Red</option>
-      <option>Green</option>
-      <option>Blue</option>
-      <option>White</option>
-      <option>Black</option>
-    </select>
-    <button id="fillButton">Fill color</button>
-    Size: <select id="sizeSelection">
-      <option>20</option>
-      <option>40</option>
-      <option>60</option>
-    </select>
-  </div>
-  <div id="drawingBoard" style="width: 600px; border-style: solid; border-width: 1; display: table;"></div>
-  <p id="quoteParagraph"></p>
-<script>
-// Calculate distance between two HTML elements
-function distance(element1, element2) {
-  let rect = element1.getBoundingClientRect();
-  let centerX1 = (rect.right + rect.left) / 2;
-  let centerY1 = (rect.bottom + rect.top) / 2;
+<!-- 02.02.2018 -->
+    <body>
+        <div>
+            <button id="clearButton">Clear</button>
+            Color: <select id="colorSelection">
+                <option>Red</option>
+                <option>Green</option>
+                <option>Blue</option>
+                <option>White</option>
+                <option>Black</option>
+            </select>
+            <button id="fillButton">Fill color</button>
+            Size: <select id="sizeSelection">
+                <option>20</option>
+                <option>40</option>
+                <option>60</option>
+            </select>
+        </div>
+        <div id="drawingBoard" style="width: 600px; border-style: solid; border-width: 1; display: table;"></div>
+        <p id="quoteParagraph"></p>
+        <script>
 
-  rect = element2.getBoundingClientRect();
-  let centerX2 = (rect.right + rect.left) / 2;
-  let centerY2 = (rect.bottom + rect.top) / 2;
+        // Calculate distance between two HTML elements
+        function distance(element1, element2) {
+            let rect = element1.getBoundingClientRect();
+            let centerX1 = (rect.right + rect.left) / 2
+            let centerY1 = (rect.bottom + rect.top) / 2
 
-  return Math.sqrt(Math.pow(centerX1 - centerX2, 2) + Math.pow(centerY1 - centerY2, 2));
-}
+            rect = element2.getBoundingClientRect();
+            let centerX2 = (rect.right + rect.left) / 2
+            let centerY2 = (rect.bottom + rect.top) / 2
 
-// Retrieve the needed HTML elements:
-let clearButton = document.getElementById("clearButton");
-let colorSelection = document.getElementById('colorSelection');
-let fillButton = document.getElementById('fillButton');
-let sizeSelection = document.getElementById('sizeSelection');
-let drawingBoard = document.getElementById('drawingBoard');
-let quoteParagraph = document.getElementById('quoteParagraph');
-
-// Associate color names to RGB values
-let colors = {'Red': 'rgb(255, 0, 0)',
-              'Green': 'rgb(0, 255, 0)',
-              'Blue': 'rgb(0, 0, 255)',
-              'White': 'rgb(255, 255, 255)',
-              'Black': 'rgb(0, 0, 0)'};
-
-// The drawingBoard squares will be stored in this table:
-let divs = [];
-
-// Create the drawingBoard squares:
-for(let i = 0; i < 600; i++) {
-  let div = document.createElement('div');
-
-  div.style.height = '20px';
-  div.style.width = '20px';
-  div.style.float = 'left';
-  div.style.backgroundColor = colors['White'];
-
-  div.onclick = function(event) {
-    for(let div of divs) {
-      // event.target corresponds to the clicked div:
-      if(distance(event.target, div) < sizeSelection.value) {
-        div.style.backgroundColor = colors[colorSelection.value];
-      }
-    }
-  }
-
-  div.onmousemove = function(event) {
-    if(event.buttons == 1) {
-      for(let div of divs) {
-        if(distance(event.target, div) < sizeSelection.value) {
-          div.style.backgroundColor = colors[colorSelection.value];
+            return Math.sqrt(Math.pow(centerX1 - centerX2, 2) + Math.pow(centerY1 - centerY2, 2))
         }
-      }
-    }
-  }
 
-  drawingBoard.appendChild(div);
-  divs.push(div);
-}
+        // Retrieve the needed HTML elements:
+        let clearButton = document.getElementById("clearButton")
+        let colorSelection = document.getElementById('colorSelection')
+        let fillButton = document.getElementById('fillButton')
+        let sizeSelection = document.getElementById('sizeSelection')
+        let drawingBoard = document.getElementById('drawingBoard')
+        let quoteParagraph = document.getElementById('quoteParagraph')
 
-clearButton.onclick = function() {
-  for(let div of divs) {
-    div.style.backgroundColor = colors['White'];
-  }
-}
+        // Associate color names to RGB values
+        let colors = {'Red': 'rgb(255, 0, 0)',
+                'Green': 'rgb(0, 255, 0)',
+                'Blue': 'rgb(0, 0, 255)',
+                'White': 'rgb(255, 255, 255)',
+                'Black': 'rgb(0, 0, 0)'}
 
-fillButton.onclick = function() {
-  for(let div of divs) {
-    div.style.backgroundColor = colors[colorSelection.value];
-  }
-}
+        // The drawingBoard squares will be stored in this table:
+        let divs = []
 
-// Random quote:
-let messages = [];
-messages.push('Do. Or do not. There is no try. -- Yoda');
-messages.push('When nine hundred years old you reach, look as good you will not. -- Yoda');
-quoteParagraph.textContent = messages[Math.floor(Math.random() * messages.length)];
-</script>
-</body>
+        // Create the drawingBoard squares:
+        for (let i = 0; i < 600; i++) {
+            let div = document.createElement('div')
+            div.style.height = '20px'
+            div.style.width = '20px'
+            div.style.float = 'left'
+            div.style.backgroundColor = colors['White']
+
+            div.onclick = function(event) {
+                for (let div of divs) {
+                    // event.target corresponds to the clicked div:
+                    if (distance(event.target, div) < sizeSelection.value) {
+                        div.style.backgroundColor = colors[colorSelection.value]
+                    }
+                }
+            }
+
+            div.onmousemove = function(event) {
+                if (event.buttons == 1) {
+                    for (let div of divs) {
+                        if (distance(event.target, div) < sizeSelection.value) {
+                            div.style.backgroundColor = colors[colorSelection.value]
+                        }
+                    }
+                }
+            }
+
+            drawingBoard.appendChild(div)
+            divs.push(div)
+        }
+
+        clearButton.onclick = function() {
+            for (let div of divs) {
+                div.style.backgroundColor = colors['White']
+            }
+        }
+
+        fillButton.onclick = function() {
+            for (let div of divs) {
+                div.style.backgroundColor = colors[colorSelection.value]
+            }
+        }
+
+        // Random quote:
+        let messages = []
+        messages.push('Do. Or do not. There is no try. -- Yoda')
+        messages.push('When nine hundred years old you reach, look as good you will not. -- Yoda')
+        quoteParagraph.textContent = messages[Math.floor(Math.random() * messages.length)]
+
+        </script>
+    </body>
 </html>

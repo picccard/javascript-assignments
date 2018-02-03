@@ -11,20 +11,20 @@
 
     <script>
     function logIn() {
-      var tries = 3;
+      let tries = 3
 
       while (tries >= 1) {
-        let b = prompt("What is your username?");
-        let p = prompt("What is your password?");
+        let b = prompt("What is your username?")
+        let p = prompt("What is your password?")
         if((b == "hans" && p == "a") || (b = "ole" && p == "b") || (b = "petter" && p == "c")) {
-          alert("Logged in");
-          document.reload();
+          alert("Logged in")
+          document.reload()
         } else {
-          alert("Wrong username or password");
-          tries--;
+          alert("Wrong username or password")
+          tries--
         }
       }
-      alert("No tries left");
+      alert("No tries left")
     }
 
     </script>

@@ -6,15 +6,15 @@
         <title>assignment-03\task01-02</title>
     </head>
     <body id="body">
-
         <div id="outputField"></div>
 
         <script type="text/javascript">
+
             document.getElementById('body')
                 .onload = () => {
                     let outputData = ''
                     for (var i = 1; i < 8; i++) {
-                        outputData += "I am number " + i + "<br>"
+                        outputData += `I am number ${i} <br>`
                     }
                     document.getElementById('outputField').innerHTML = outputData
                 }

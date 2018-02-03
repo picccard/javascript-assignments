@@ -13,26 +13,23 @@
 
         function makeTable() {
 
-           var number1, number2, prod;
+            let prod = ''
+            let table = "<table style='width:500px'>"
 
-           var table = "<table style='width:500px'>";
-
-           for (number1 = 1; number1 <= 10; number1++) {
-             table += "<tr>";
-             for (number2 = 1; number2 <= 10; number2++) {
-               if (number2 <= number1) {
-                 prod = number2;
-               } else {
-                 prod = "";
-               }
-               table += "<td>" + prod + "</td>";
-             }
-             table += "</tr>";
-           }
-           table += "</table>";
-
-           document.getElementById("output").innerHTML = table;
-
+            for (let number1 = 1; number1 <= 10; number1++) {
+                table += "<tr>"
+                for (let number2 = 1; number2 <= 10; number2++) {
+                    if (number2 <= number1) {
+                        prod = number2
+                    } else {
+                        prod = ''
+                    }
+                    table += "<td>" + prod + "</td>"
+                }
+                table += "</tr>"
+            }
+            table += "</table>"
+            document.getElementById("output").innerHTML = table
         }
 
         </script>
