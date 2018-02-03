@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!-- 02.02.2018 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>assignment-04\task04-05</title>
+    </head>
+    <body>
+        <button onclick="fill();print();printLast(numbers)">Fill and print</button><br>
+        <output id="output1"></output><br><br>
+        <output id="output2"></output>
+
+        <script>
+
+        let numbers = [];
+
+        function fill() {
+          for (let i = 0; i < 20; i++) {
+            let num = Math.floor(Math.random() * 11);
+            numbers[i] = num;
+          }
+        }
+
+        function print() {
+          let response = "";
+          for (let i = 0; i < 20;i++) {
+            response += numbers[i] + "<br>";
+          }
+          document.getElementById("output1").innerHTML = response;
+        }
+
+        function printLast(array) {
+            document.getElementById("output2").innerHTML = 'Last item: ' + array[array.length - 1];
+        }
+
+        </script>
+
+
+    </body>
+</html>

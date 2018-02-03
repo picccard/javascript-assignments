@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<!-- 02.02.2018 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>assignment-04\task01</title>
+    </head>
+    <body>
+        Age: <input type="text" id="age">
+        <button onclick="checkAge(document.getElementById('age').value)">Check Age</button>
+        <output id="output"></output>
+
+        <script>
+
+        function checkAge(age) {
+          let response = '';
+          if (age > 13 && age < 19) {
+            response = "You are a teenager";
+          } else {
+            response = "You are not a teenager";
+          }
+          document.getElementById("output").innerHTML = response;
+        }
+
+        </script>
+
+
+    </body>
+</html>

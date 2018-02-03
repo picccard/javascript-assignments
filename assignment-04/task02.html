@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<!-- 02.02.2018 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>assignment-04\task02</title>
+    </head>
+    <body>
+        Number 1: <input type="text" id="number1"><br>
+        Number 2: <input type="text" id="number2"><br>
+        <button onclick="getLargest(document.getElementById('number1').value,document.getElementById('number2').value)">Check numbers</button>
+        <output id="output"></output>
+
+        <script>
+
+        function getLargest(n1, n2) {
+          response = "";
+          if (n1 > n2) {
+            response = "Number 1 is largest";
+          } else {
+            response = "Number 2 is largest";
+          }
+          document.getElementById("output").innerHTML = response;
+        }
+
+        </script>
+
+
+    </body>
+</html>

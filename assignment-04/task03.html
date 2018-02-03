@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<!-- 02.02.2018 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>assignment-04\task03</title>
+    </head>
+    <body>
+        Size of the squares side: <input type="text" id="side"><br>
+        <button onclick="getArea(document.getElementById('side').value)">Calculate area</button><br>
+        <output id="output"></output>
+
+        <script>
+
+        function getArea(side) {
+          var area = side * side;
+          document.getElementById("output").innerHTML = "Area is: " + area;
+        }
+
+        </script>
+
+
+    </body>
+</html>
