@@ -1,0 +1,182 @@
+<html>
+<!-- 02.02.2018 -->
+<body>
+  <div>Menu:
+    <a href="#/personListPage">Person List</a>
+    <a href="#/aboutPage">About</a>
+  </div>
+  <div class="page" id="personListPage" style="display: none;">
+    <b>Person List</b>
+    <ul id="personListUl"></ul>
+    <div>
+      <label>Name: </label><input type="text" id="personListNameInput"></input>
+      <label>City: </label><input type="text" id="personListCityInput"></input>
+      <label>Age: </label><input type="text" id="personListAgeInput"></input>
+      <button id="personListAddPersonButton">Add person</button>
+    </div>
+  </div>
+  <div class="page" id="personDetailsPage" style="display: none;">
+    <b>Person Details</b>
+    <div>Name: <span id="personDetailsName"></span></div>
+    <div>City: <span id="personDetailsCity"></span></div>
+    <div>Age: <span id="personDetailsAge"></span></div>
+    <label>New name: </label><input type="text" id="personDetailsNameInput"></input>
+    <label>New city: </label><input type="text" id="personDetailsCityInput"></input>
+    <label>New age: </label><input type="text" id="personDetailsAgeInput"></input>
+    <button id="personDetailsUpdatePersonButton">Update person</button>
+    <button id="personDetailsDeletePersonButton">Delete person</button>
+  </div>
+  <div class="page" id="aboutPage">
+    A simple application demonstrating multiple pages. Created by Picccard.
+  </div>
+<script>
+function updatePages() {
+  let parts = window.location.hash.split('/');
+
+  if(parts.length < 2) {                       // If parts[1] is not set
+    window.location.hash = '#/personListPage'; // Set default page
+  }
+
+  for(let page of document.getElementsByClassName('page')) {
+    if(page.id == parts[1]) {
+      page.style.display = 'inline'; // Show page
+      if(page.onshow)  // If onshow is set
+        page.onshow(); // call the onshow() function
+    }
+    else {
+      page.style.display = 'none';  // Hide page
+    }
+  }
+}
+
+document.body.onload = function() { // When the application is fully loaded:
+  updatePages();
+}
+
+document.body.onhashchange = function() {
+  updatePages();
+}
+
+/*******************************************************************************
+* Common application data (for all pages)
+*******************************************************************************/
+let persons = [{name: 'Kari', city: 'Trondheim', age: 30},
+               {name: 'Ola', city: 'Bergen', age: 25}];
+
+/*******************************************************************************
+* personListPage
+*******************************************************************************/
+let personListPage = document.getElementById('personListPage');
+let personListUl = document.getElementById('personListUl');
+let personListNameInput = document.getElementById('personListNameInput');
+let personListCityInput = document.getElementById('personListCityInput');
+let personListAgeInput = document.getElementById('personListAgeInput');
+let personListAddPersonButton = document.getElementById('personListAddPersonButton');
+
+// Update the HTML-element personListUl from the contents of the table persons
+function updatePersonList() {
+  // Remove elements from personListUl:
+  while(personListUl.firstChild) {
+    personListUl.removeChild(personListUl.firstChild);
+  }
+
+  // Add elements to personListUl:
+  for(let personsIndex = 0; personsIndex < persons.length; personsIndex++) {
+    let a = document.createElement('a');
+    a.href = '#/personDetailsPage/' + personsIndex;
+    a.textContent = persons[personsIndex].name;
+
+    let li = document.createElement('li');
+    li.appendChild(a);
+
+    personListUl.appendChild(li);
+
+    // Add delete button:
+    let button = document.createElement('button');
+    button.textContent = 'x';
+    button.onclick = function(event) {
+      persons.splice(personsIndex, 1); // Erase element from the persons table
+
+      updatePersonList();
+    }
+    li.appendChild(button);
+  }
+}
+
+personListPage.onshow = function() {
+  updatePersonList();
+}
+
+personListAddPersonButton.onclick = function(event) {
+  // Prevent default event action (form submit):
+  event.preventDefault();
+
+  // Add person from inputs. The personListAgeInput string is converted to a number using Number():
+  persons.push({name: personListNameInput.value, city: personListCityInput.value, age: Number(personListAgeInput.value)});
+
+  // Reset input values:
+  personListNameInput.value='';
+  personListCityInput.value='';
+  personListAgeInput.value='';
+
+  updatePersonList();
+}
+
+/*******************************************************************************
+* personDetailsPage
+*******************************************************************************/
+let personDetailsPage = document.getElementById('personDetailsPage');
+let personDetailsName = document.getElementById('personDetailsName');
+let personDetailsCity = document.getElementById('personDetailsCity');
+let personDetailsAge = document.getElementById('personDetailsAge');
+let personDetailsNameInput = document.getElementById('personDetailsNameInput');
+let personDetailsCityInput = document.getElementById('personDetailsCityInput');
+let personDetailsAgeInput = document.getElementById('personDetailsAgeInput');
+let personDetailsUpdatePersonButton = document.getElementById('personDetailsUpdatePersonButton');
+let personDetailsDeletePersonButton = document.getElementById('personDetailsDeletePersonButton');
+
+personDetailsPage.onshow = function() {
+  let parts = window.location.hash.split('/'); // parts[2] contains the index of the person
+  let personsIndex = Number(parts[2]);         // to be shown from the persons table
+
+  // Show details of the person at personsIndex in the persons table:
+  personDetailsName.textContent = persons[personsIndex].name;
+  personDetailsCity.textContent = persons[personsIndex].city;
+  personDetailsAge.textContent = persons[personsIndex].age
+}
+
+personDetailsUpdatePersonButton.onclick = function() {
+  let parts = window.location.hash.split('/'); // parts[2] contains the index of the person
+  let personsIndex = Number(parts[2]);         // to be shown from the persons table
+
+  // Update persons table and personDetailsName/City/Age elements if new values are given:
+  if(personDetailsNameInput.value.length > 0) {
+    persons[personsIndex].name = personDetailsNameInput.value;
+    personDetailsName.textContent = persons[personsIndex].name
+  }
+  if(personDetailsCityInput.value.length > 0) {
+    persons[personsIndex].city = personDetailsCityInput.value;
+    personDetailsCity.textContent = persons[personsIndex].city
+  }
+  if(personDetailsAgeInput.value.length > 0) {
+    persons[personsIndex].age = personDetailsAgeInput.value;
+    personDetailsAge.textContent = persons[personsIndex].age
+  }
+
+  // Reset input values:
+  personDetailsNameInput.value = '';
+  personDetailsCityInput.value = '';
+  personDetailsAgeInput.value = '';
+}
+
+personDetailsDeletePersonButton.onclick = function() {
+  let parts = window.location.hash.split('/'); // parts[2] contains the index of the person
+  let personsIndex = Number(parts[2]);         // to be shown from the persons table
+
+  persons.splice(personsIndex, 1); // Erase element from the persons table
+
+  window.location.hash = '#/personListPage'; // Show personListPage
+}
+</script>
+</body>
+</html>
