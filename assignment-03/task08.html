@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!-- 02.02.2018 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>assignment-03\task08</title>
+    </head>
+    <body onLoad="makeTable()">
+      <div id="output"></div>
+
+      <script>
+      function makeTable() {
+
+         var number1, number2, prod;
+
+         var table = "<table style='width:500px'>";
+
+         for (number1 = 10; number1 >= 1; number1--) {
+           table += "<tr>";
+           for (number2 = 1; number2 <= 10; number2++) {
+             if (number2 <= number1) {
+               prod = number2;
+             } else {
+               prod = "";
+             }
+             table += "<td>" + prod + "</td>";
+           }
+           table += "</tr>";
+         }
+         table += "</table>";
+
+         document.getElementById("output").innerHTML = table;
+
+      }
+      </script>
+
+    </body>
+</html>

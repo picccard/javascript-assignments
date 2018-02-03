@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<!-- 02.02.2018 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>assignment-03\task06</title>
+    </head>
+    <body>
+
+    <button onclick="logIn()">Log in</button>
+
+    <script>
+    function logIn() {
+      var tries = 3;
+
+      while (tries >= 1) {
+        let b = prompt("What is your username?");
+        let p = prompt("What is your password?");
+        if((b == "hans" && p == "a") || (b = "ole" && p == "b") || (b = "petter" && p == "c")) {
+          alert("Logged in");
+          document.reload();
+        } else {
+          alert("Wrong username or password");
+          tries--;
+        }
+      }
+      alert("No tries left");
+    }
+
+    </script>
+
+
+    </body>
+</html>
